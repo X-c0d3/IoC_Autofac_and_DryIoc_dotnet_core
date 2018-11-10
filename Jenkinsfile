@@ -31,7 +31,7 @@ pipeline {
 
     stage('Test') {
       steps {
-        sh 'dotnet test --no-build ./IoC.Test'
+        sh 'dotnet test ./IoC.Test'
 	    }
     }
     
