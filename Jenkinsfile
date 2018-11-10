@@ -34,12 +34,6 @@ pipeline {
         sh 'dotnet test ./IoC.Test'
 	    }
     }
-    
-    stage ('Pack') {
-    steps {
-        sh 'dotnet pack --no-build --output nupkgs'
-      }
-    }
  
     stage('Deploy') {
       steps {
