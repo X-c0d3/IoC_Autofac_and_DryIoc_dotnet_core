@@ -65,7 +65,7 @@ pipeline {
     
     stage('Compress to artifacts file ') {
       steps {
-        sh "tar -zcf ./${JOB_NAME}_1.0.1.${env.BUILD_NUMBER}.tar.gz ./Deployed/"
+        sh "tar -zcf ./${JOB_NAME}_1.0.1.${env.BUILD_NUMBER}.tar.gz ./IoC.Web/Deployed/"
       }
     }
     
