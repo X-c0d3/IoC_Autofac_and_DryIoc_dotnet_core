@@ -33,6 +33,7 @@ Program.cs
 #######################################################################################
 //using DryIoc.Microsoft.DependencyInjection;
 //using DryIoc;
+//using DryIoc.MefAttributedModel;
 
 StartUp.cs
 		public IServiceProvider ConfigureServices(IServiceCollection services)
@@ -53,4 +54,25 @@ StartUp.cs
             container.Register<IHotelServices, HotelServices>();
             container.Register<IDataServices, DataServices>();
             return container.Resolve<IServiceProvider>();
+            
+            or
+            
+            return new Container()
+            .WithMef()
+            .WithDependencyInjectionAdapter(services, throwIfUnresolved: type => type.Name.EndsWith("Controller", StringComparison.CurrentCulture))
+            .ConfigureServiceProvider<CompositionRoot>();
         }
+        
+        
+    public class CompositionRoot
+    {
+        // If you need the whole container then change parameter type from IRegistrator to IContainer
+        public CompositionRoot(IRegistrator r) 
+        { 
+            r.Register<IHotelServices, HotelServices>(Reuse.Singleton);
+            r.Register<IDataServices, DataServices>(Reuse.Transient);
+            // r.Register<IScopedService, ScopedService>(Reuse.InCurrentScope);
+            var assemblies = new[] { typeof(DataServices).GetAssembly() };
+            r.RegisterExports(assemblies);
+        }
+    }

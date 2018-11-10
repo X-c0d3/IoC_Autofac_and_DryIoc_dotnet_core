@@ -13,7 +13,7 @@ using Autofac;
 
 using DryIoc.Microsoft.DependencyInjection;
 using DryIoc;
-
+using DryIoc.MefAttributedModel;
 namespace IoC.Web
 {
     public class Startup
@@ -62,11 +62,22 @@ namespace IoC.Web
             //using DryIoc.Microsoft.DependencyInjection;
             //using DryIoc;
 
+
             // DryIOC            
-            var container = new Container().WithDependencyInjectionAdapter(services);
-            container.Register<IHotelServices, HotelServices>();
-            container.Register<IDataServices, DataServices>();
-            return container.Resolve<IServiceProvider>();
+            // var container = new Container().WithDependencyInjectionAdapter(services);
+            // container.Register<IHotelServices, HotelServices>();
+            // container.Register<IDataServices, DataServices>();
+            // return container.Resolve<IServiceProvider>();
+
+              return new Container()
+                // optional: to support MEF attributed services discovery
+                .WithMef()
+                // setup DI adapter
+                .WithDependencyInjectionAdapter(services,
+                // optional: propagate exception if specified types are not resolved, and prevent fallback to default Asp resolution
+                    throwIfUnresolved: type => type.Name.EndsWith("Controller", StringComparison.CurrentCulture))
+                // add registrations from CompositionRoot classs
+                .ConfigureServiceProvider<CompositionRoot>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -81,7 +92,6 @@ namespace IoC.Web
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
-
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
@@ -92,6 +102,20 @@ namespace IoC.Web
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+        }
+    }
+
+   public class CompositionRoot
+    {
+        // If you need the whole container then change parameter type from IRegistrator to IContainer
+        public CompositionRoot(IRegistrator r) 
+        { 
+            r.Register<IHotelServices, HotelServices>(Reuse.Singleton);
+            r.Register<IDataServices, DataServices>(Reuse.Transient);
+            // r.Register<IScopedService, ScopedService>(Reuse.InCurrentScope);
+
+            var assemblies = new[] { typeof(DataServices).GetAssembly() };
+            r.RegisterExports(assemblies);
         }
     }
 }

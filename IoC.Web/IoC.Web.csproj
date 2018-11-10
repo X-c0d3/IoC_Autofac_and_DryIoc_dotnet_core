@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.3.1" />
+    <PackageReference Include="DryIoc.MefAttributedModel" Version="4.0.4" />
     <PackageReference Include="DryIoc.Microsoft.DependencyInjection" Version="2.1.0" />
     <PackageReference Include="DryIocAttributes" Version="4.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
