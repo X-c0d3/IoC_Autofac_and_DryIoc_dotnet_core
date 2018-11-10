@@ -1,0 +1,56 @@
+﻿#######################################################################################
+							Autofac
+#######################################################################################
+ - using Autofac.Extensions.DependencyInjection;
+ - using Autofac;
+
+StartUp.cs
+		// Autofac Register
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            // using Autofac;
+            // using Autofac.Extensions.DependencyInjection;
+            // need to .ConfigureServices(services => services.AddAutofac())
+            builder.RegisterType<HotelServices>().As<IHotelServices>();
+            builder.RegisterType<DataServices>().As<IDataServices>();
+        }
+
+
+
+Program.cs
+ - using Autofac.Extensions.DependencyInjection;
+
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+             .ConfigureServices(services => services.AddAutofac())                  <---- *****
+             .UseStartup<Startup>();
+
+
+
+
+#######################################################################################
+							DryIOC
+#######################################################################################
+//using DryIoc.Microsoft.DependencyInjection;
+//using DryIoc;
+
+StartUp.cs
+		public IServiceProvider ConfigureServices(IServiceCollection services)
+        {
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
+            services.AddMvc().AddControllersAsServices();
+
+
+
+            // DryIOC            
+            var container = new Container().WithDependencyInjectionAdapter(services);
+            container.Register<IHotelServices, HotelServices>();
+            container.Register<IDataServices, DataServices>();
+            return container.Resolve<IServiceProvider>();
+        }

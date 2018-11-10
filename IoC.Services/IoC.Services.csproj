@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IoC.Interfaces\IoC.Interfaces.csproj" />
+    <ProjectReference Include="..\IoC.Models\IoC.Models.csproj" />
+  </ItemGroup>
+
+</Project>
