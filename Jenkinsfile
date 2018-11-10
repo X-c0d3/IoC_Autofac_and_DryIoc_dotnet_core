@@ -43,7 +43,7 @@ pipeline {
  
     stage('Deploy') {
       steps {
-        sh 'dotnet publish -c Release -o Deployed -r linux-arm64'
+        sh 'dotnet publish ./IoC.Web/IoC.Web.csproj -c Release -o Deployed -r linux-arm64'
       }
     }
 
