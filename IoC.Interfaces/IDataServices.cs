@@ -1,12 +1,14 @@
-﻿using IoC.Models;
+﻿using Ioc.Repository.Repositories.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace IoC.Interfaces
 {
     public interface IDataServices
     {
-        List<Hotel> GetAllData();
+        Task<Hotel> GetHotelById(int id);
+        Task<List<Hotel>> GetAllData();
     }
 }

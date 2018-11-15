@@ -18,7 +18,7 @@ namespace IoC.Web.Controllers
         }
         public IActionResult Index()
         {
-            var hotelList = this._IHotelServices.GetHotelAll();
+            var hotelList = this._IHotelServices.GetHotelAll().Result;
             return View();
         }
 

@@ -3,17 +3,28 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2048
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoC.Services", "IoC.Services\IoC.Services.csproj", "{32301D5E-2375-45F8-BF43-5B91F2B1E45E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoC.Services", "IoC.Services\IoC.Services.csproj", "{32301D5E-2375-45F8-BF43-5B91F2B1E45E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoC.Models", "IoC.Models\IoC.Models.csproj", "{AA7A151D-E09D-4565-86C4-56B29FCFCCE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoC.Models", "IoC.Models\IoC.Models.csproj", "{AA7A151D-E09D-4565-86C4-56B29FCFCCE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoC.Interfaces", "IoC.Interfaces\IoC.Interfaces.csproj", "{57AE7481-6380-4785-9CCF-B2D09437ADD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoC.Interfaces", "IoC.Interfaces\IoC.Interfaces.csproj", "{57AE7481-6380-4785-9CCF-B2D09437ADD4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoC.Test", "IoC.Test\IoC.Test.csproj", "{057E42CC-5B51-4234-99EF-EBD7B16DBAD9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoC.Test", "IoC.Test\IoC.Test.csproj", "{057E42CC-5B51-4234-99EF-EBD7B16DBAD9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoC.ConsoleTest", "IoC.ConsoleTest\IoC.ConsoleTest.csproj", "{7654AD8E-6321-47AE-9FD5-214F963DA8C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoC.ConsoleTest", "IoC.ConsoleTest\IoC.ConsoleTest.csproj", "{7654AD8E-6321-47AE-9FD5-214F963DA8C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoC.Web", "IoC.Web\IoC.Web.csproj", "{7984AE25-8FF3-48E9-855D-DEF503B93087}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoC.Web", "IoC.Web\IoC.Web.csproj", "{7984AE25-8FF3-48E9-855D-DEF503B93087}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ioc.Repository", "Ioc.Repository", "{F1B69F53-D63B-4B3C-B9BD-8CB658A834D1}"
+	ProjectSection(SolutionItems) = preProject
+		Noted.txt = Noted.txt
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ioc.Repository.Repositories", "Ioc.Repository.Repositories\Ioc.Repository.Repositories.csproj", "{4308BC9D-6D61-429E-8DA1-2F5949580BE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ioc.Repository.Model", "Ioc.Repository.Model\Ioc.Repository.Model.csproj", "{6B10E140-90A5-413F-B442-AF6634B82B90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ioc.Repository.Interfaces", "Ioc.Repository.Interfaces\Ioc.Repository.Interfaces.csproj", "{E017A623-DB0F-45AB-B471-D1D69B95C21B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,9 +56,26 @@ Global
 		{7984AE25-8FF3-48E9-855D-DEF503B93087}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7984AE25-8FF3-48E9-855D-DEF503B93087}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7984AE25-8FF3-48E9-855D-DEF503B93087}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4308BC9D-6D61-429E-8DA1-2F5949580BE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4308BC9D-6D61-429E-8DA1-2F5949580BE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4308BC9D-6D61-429E-8DA1-2F5949580BE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4308BC9D-6D61-429E-8DA1-2F5949580BE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B10E140-90A5-413F-B442-AF6634B82B90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B10E140-90A5-413F-B442-AF6634B82B90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B10E140-90A5-413F-B442-AF6634B82B90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B10E140-90A5-413F-B442-AF6634B82B90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E017A623-DB0F-45AB-B471-D1D69B95C21B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E017A623-DB0F-45AB-B471-D1D69B95C21B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E017A623-DB0F-45AB-B471-D1D69B95C21B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E017A623-DB0F-45AB-B471-D1D69B95C21B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4308BC9D-6D61-429E-8DA1-2F5949580BE0} = {F1B69F53-D63B-4B3C-B9BD-8CB658A834D1}
+		{6B10E140-90A5-413F-B442-AF6634B82B90} = {F1B69F53-D63B-4B3C-B9BD-8CB658A834D1}
+		{E017A623-DB0F-45AB-B471-D1D69B95C21B} = {F1B69F53-D63B-4B3C-B9BD-8CB658A834D1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {50C97930-B3E6-4DDA-8A14-11E88291D4E4}

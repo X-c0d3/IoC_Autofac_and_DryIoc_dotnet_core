@@ -1,27 +1,31 @@
-﻿using IoC.Interfaces;
-using IoC.Models;
-using System;
+﻿using Ioc.Repository.Repositories.Models;
+using IoC.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace IoC.Services
 {
     public class DataServices : IDataServices
     {
-        public List<Hotel> GetAllData()
+        readonly EF_DEMOContext eF_DEMOContext;
+        public DataServices(EF_DEMOContext eF_DEMOContext)
         {
-            var res = new List<Hotel>();
-            for (int i = 1; i <= 20; i++)
-            {
-                res.Add(new Hotel
-                {
-                    HotelId = i,
-                    HotelName = "Hotel " + i,
-                    IsActive = true
-                });
-        
-            }
-            return res;
+            this.eF_DEMOContext = eF_DEMOContext;
+        }
+
+        public async Task<Hotel> GetHotelById(int id)
+        {
+            return await this.eF_DEMOContext.Hotel
+                .Include(x => x.City)
+                .FirstOrDefaultAsync(x => x.HotelId == id);
+        }
+        public async Task<List<Hotel>> GetAllData()
+        {
+            return await this.eF_DEMOContext.Hotel
+                .Include(x => x.City)
+                .ToListAsync();
         }
     }
 }

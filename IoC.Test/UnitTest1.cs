@@ -5,11 +5,11 @@ using Xunit;
 using Moq;
 using IoC.Interfaces;
 using System.Collections.Generic;
-using IoC.Models;
 using DryIoc;
 using Arg = DryIoc.Arg;
 using NSubstitute;
 using System.Collections.Concurrent;
+using Ioc.Repository.Repositories.Models;
 
 namespace IoC.Test
 {
@@ -24,20 +24,20 @@ namespace IoC.Test
                 {
                     new Hotel {
                         HotelId = 1,
-                        HotelName = "My hotel name",
+                        Name = "My hotel name",
                         IsActive = true
                     }
                 };
 
                 mock.Mock<IDataServices>()
                     .Setup(srv => srv.GetAllData())
-                    .Returns(moqResponse);
+                    .ReturnsAsync(moqResponse);
 
                 var h = mock.Create<HotelServices>();
                 var res = h.GetHotelAll();
 
-                Assert.Single(res);
-                Assert.Equal("My hotel name", h.GetHotelById(1).HotelName);
+                Assert.Single(res.Result);
+                Assert.Equal("My hotel name", h.GetHotelById(1).Result.Name);
             }
         }
 
@@ -49,18 +49,18 @@ namespace IoC.Test
                 {
                     new Hotel {
                         HotelId = 1,
-                        HotelName = "My hotel name",
+                        Name = "My hotel name",
                         IsActive = true
                     }
                 };
             mockRepo.Setup(x => x.GetAllData())
-                .Returns(moqResponse);
+                .ReturnsAsync(moqResponse);
 
             var h = new HotelServices(mockRepo.Object);
             var res = h.GetHotelAll();
 
-            Assert.Single(res);
-            Assert.Equal("My hotel name", h.GetHotelById(1).HotelName);
+            Assert.Single(res.Result);
+            Assert.Equal("My hotel name", h.GetHotelById(1).Result.Name);
         }
 
 
@@ -74,19 +74,19 @@ namespace IoC.Test
                 {
                     new Hotel {
                         HotelId = 1,
-                        HotelName = "My hotel name",
+                        Name = "My hotel name",
                         IsActive = true
                     }
                 };
             // ################################################33
             var mockRepo = new Mock<IDataServices>();
             mockRepo.Setup(x => x.GetAllData())
-                .Returns(moqResponse);
+                .ReturnsAsync(moqResponse);
 
             var h = new HotelServices(mockRepo.Object);
             var res = h.GetHotelAll();
-            Assert.Single(res);
-            Assert.Equal("My hotel name", h.GetHotelById(1).HotelName);
+            Assert.Single(res.Result);
+            Assert.Equal("My hotel name", h.GetHotelById(1).Result.Name);
 
 
 
@@ -96,9 +96,9 @@ namespace IoC.Test
             var sub = container.Resolve<IHotelServices>();
             var resx = sub.GetHotelAll();
 
-    
 
- 
+
+
         }
     }
 }

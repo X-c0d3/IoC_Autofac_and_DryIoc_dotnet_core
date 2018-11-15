@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\IoC.Models\IoC.Models.csproj" />
+    <ProjectReference Include="..\Ioc.Repository.Repositories\Ioc.Repository.Repositories.csproj" />
   </ItemGroup>
 
 </Project>

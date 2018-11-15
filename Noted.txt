@@ -1,0 +1,33 @@
+
+
+1.
+Install 
+ - EntityFrameworkCore 2.1.4 (or latest)
+
+2.
+ Add to .csproj
+ <ItemGroup>
+	<DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.1" />
+ </ItemGroup>
+
+3.
+	# dotnet restore
+	# dotnet ef -h
+	or
+	# dotnet ef dbcontext scaffold -h
+
+4.
+	# dotnet ef dbcontext scaffold "Server=127.0.0.1;Database=EF_DEMO;User ID=sa;Password=1234;" Microsoft.EntityFrameworkCore.SqlServer -f -o Models
+
+5. Update
+	# dotnet ef migrations add init_database    (any name)
+	# dotnet ef database update
+
+IF EERROR remove under method "up"
+
+	dotnet ef migrations add update_databases2
+	dotnet ef migrations remove xxx
+	dotnet ef database update
+
+Rollback
+	#dotnet ef database update <version>

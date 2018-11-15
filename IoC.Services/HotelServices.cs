@@ -1,9 +1,10 @@
-﻿using IoC.Interfaces;
-using IoC.Models;
+﻿using Ioc.Repository.Repositories.Models;
+using IoC.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace IoC.Services
 {
@@ -15,16 +16,15 @@ namespace IoC.Services
             this._IDataServices = dataServices;
         }
 
-        public List<Hotel> GetHotelAll()
+        public async Task<List<Hotel>> GetHotelAll()
         {
-            return this._IDataServices.GetAllData();
+            return await this._IDataServices.GetAllData();
         }
 
-        public Hotel GetHotelById(int hotelId)
-        {
-            return this._IDataServices.GetAllData()
-                .FirstOrDefault(x => x.HotelId == hotelId);
-        }
 
+        public async Task<Hotel> GetHotelById(int hotelId)
+        {
+            return await this._IDataServices.GetHotelById(hotelId);
+        }
     }
 }
