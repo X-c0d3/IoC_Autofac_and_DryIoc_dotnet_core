@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using System.IO;
+using StackExchange.Profiling;
 
 namespace IoC.ConsoleTest
 {
@@ -51,17 +52,22 @@ namespace IoC.ConsoleTest
             var overallProcess = new Stopwatch();
             overallProcess.Restart();
 
-            var container = ContainerAutofacRegister.Configure();
-            Console.WriteLine("################## Auto face Ioc ###################");
-
-            using (var scope = container.BeginLifetimeScope())
+            var profiler = MiniProfiler.StartNew("TestAutoFac");
+            using (profiler.Step("Main Work"))
             {
-                var hotelSvc = scope.Resolve<IHotelServices>();
-                var hh = hotelSvc.GetHotelAll().Result;
-                foreach (var h in hotelSvc.GetHotelAll().Result)
-                    Console.WriteLine($"{h.HotelId} - {h.Name} Status : {h.IsActive}");
+                var container = ContainerAutofacRegister.Configure();
+                Console.WriteLine("################## Auto face Ioc ###################");
+
+                using (var scope = container.BeginLifetimeScope())
+                {
+                    var hotelSvc = scope.Resolve<IHotelServices>();
+                    var hh = hotelSvc.GetHotelAll().Result;
+                    foreach (var h in hotelSvc.GetHotelAll().Result)
+                        Console.WriteLine($"{h.HotelId} - {h.Name} Status : {h.IsActive}");
+                }
+                Console.WriteLine("####################################################");
             }
-            Console.WriteLine("####################################################");
+
             overallProcess.Stop();
             Console.WriteLine($"Elapsed Time {overallProcess.Elapsed} ");
         }

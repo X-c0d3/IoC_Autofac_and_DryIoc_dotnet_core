@@ -17,6 +17,7 @@ using DryIoc.MefAttributedModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Ioc.Repository.Repositories.Models;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace IoC.Web
 {
@@ -43,6 +44,28 @@ namespace IoC.Web
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info
+                {
+                    Version = "v1",
+                    Title = "API (.net core)",
+                    Description = "ASP.NET Core Web API",
+                });
+            });
+            services.AddMiniProfiler(options =>
+            {
+                // Path to use for profiler URLs, default is /mini-profiler-resources
+                options.RouteBasePath = "/profiler";
+
+                // Control storage - the default is 30 minutes
+                //(options.Storage as MemoryCacheStorage).CacheDuration = TimeSpan.FromMinutes(60);
+                //options.Storage = new SqlServerStorage("Data Source=.;Initial Catalog=MiniProfiler;Integrated Security=True;");
+
+                // Control which SQL formatter to use, InlineFormatter is the default
+                options.SqlFormatter = new StackExchange.Profiling.SqlFormatters.SqlServerFormatter();
+            }).AddEntityFramework();
         }
 
         // Autofac Register
@@ -87,6 +110,7 @@ namespace IoC.Web
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseMiniProfiler();
             }
             else
             {
@@ -102,6 +126,13 @@ namespace IoC.Web
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+            });
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                //c.IndexStream = () => GetType().GetTypeInfo().Assembly.GetManifestResourceStream("Acid.Api.Swagger.index.html");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "API V1");
             });
         }
     }

@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MiniProfiler.AspNetCore.Mvc" Version="4.0.138" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\IoC.Interfaces\IoC.Interfaces.csproj" />
     <ProjectReference Include="..\IoC.Models\IoC.Models.csproj" />
     <ProjectReference Include="..\Ioc.Repository.Repositories\Ioc.Repository.Repositories.csproj" />

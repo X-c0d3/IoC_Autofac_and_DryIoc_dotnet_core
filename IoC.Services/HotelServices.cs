@@ -1,9 +1,7 @@
 ﻿using Ioc.Repository.Repositories.Models;
 using IoC.Interfaces;
-using System;
+using StackExchange.Profiling;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace IoC.Services
@@ -18,13 +16,19 @@ namespace IoC.Services
 
         public async Task<List<Hotel>> GetHotelAll()
         {
-            return await this._IDataServices.GetAllData();
+            using (MiniProfiler.Current.Step("GetHotelAll"))
+            {
+                return await this._IDataServices.GetAllData();
+            }
         }
 
 
         public async Task<Hotel> GetHotelById(int hotelId)
         {
-            return await this._IDataServices.GetHotelById(hotelId);
+            using (MiniProfiler.Current.Step("GetHotelById"))
+            {
+                return await this._IDataServices.GetHotelById(hotelId);
+            }
         }
     }
 }

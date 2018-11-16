@@ -1,8 +1,8 @@
 ﻿using Ioc.Repository.Repositories.Models;
 using IoC.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using StackExchange.Profiling;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace IoC.Services
@@ -17,15 +17,21 @@ namespace IoC.Services
 
         public async Task<Hotel> GetHotelById(int id)
         {
-            return await this.eF_DEMOContext.Hotel
-                .Include(x => x.City)
-                .FirstOrDefaultAsync(x => x.HotelId == id);
+            using (MiniProfiler.Current.Step("GetHotelById"))
+            {
+                return await this.eF_DEMOContext.Hotel
+                    .Include(x => x.City)
+                    .FirstOrDefaultAsync(x => x.HotelId == id);
+            }
         }
         public async Task<List<Hotel>> GetAllData()
         {
-            return await this.eF_DEMOContext.Hotel
+            using (MiniProfiler.Current.Step("GetAllData"))
+            {
+                return await this.eF_DEMOContext.Hotel
                 .Include(x => x.City)
                 .ToListAsync();
+            }
         }
     }
 }
