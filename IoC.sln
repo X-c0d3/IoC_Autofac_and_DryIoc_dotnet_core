@@ -17,14 +17,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoC.Web", "IoC.Web\IoC.Web.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ioc.Repository", "Ioc.Repository", "{F1B69F53-D63B-4B3C-B9BD-8CB658A834D1}"
 	ProjectSection(SolutionItems) = preProject
+		DBScript.sql = DBScript.sql
 		Noted.txt = Noted.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ioc.Repository.Repositories", "Ioc.Repository.Repositories\Ioc.Repository.Repositories.csproj", "{4308BC9D-6D61-429E-8DA1-2F5949580BE0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ioc.Repository.Repositories", "Ioc.Repository.Repositories\Ioc.Repository.Repositories.csproj", "{4308BC9D-6D61-429E-8DA1-2F5949580BE0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ioc.Repository.Model", "Ioc.Repository.Model\Ioc.Repository.Model.csproj", "{6B10E140-90A5-413F-B442-AF6634B82B90}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ioc.Repository.Model", "Ioc.Repository.Model\Ioc.Repository.Model.csproj", "{6B10E140-90A5-413F-B442-AF6634B82B90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ioc.Repository.Interfaces", "Ioc.Repository.Interfaces\Ioc.Repository.Interfaces.csproj", "{E017A623-DB0F-45AB-B471-D1D69B95C21B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ioc.Repository.Interfaces", "Ioc.Repository.Interfaces\Ioc.Repository.Interfaces.csproj", "{E017A623-DB0F-45AB-B471-D1D69B95C21B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
