@@ -12,6 +12,7 @@ namespace Ioc.Repository.Repositories.Models
         public EF_DEMOContext(DbContextOptions<EF_DEMOContext> options)
             : base(options)
         {
+            
         }
 
         public virtual DbSet<City> City { get; set; }

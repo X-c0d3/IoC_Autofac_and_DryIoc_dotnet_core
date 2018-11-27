@@ -31,3 +31,13 @@ IF EERROR remove under method "up"
 
 Rollback
 	#dotnet ef database update <version>
+
+
+
+
+Microsoft.EntityFrameworkCore.Proxies.
+	  public EF_DEMOContext(DbContextOptions<EF_DEMOContext> options)
+            : base(options)
+        {
+		  ChangeTracker.LazyLoadingEnabled = false;
+        }
